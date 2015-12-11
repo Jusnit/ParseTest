@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">ParseTest</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="parse_app_id">F4xeXtx05vrTIvtBTgocI5FrHhLPS9R12uI6P23H</string>
+    <string name="parse_client_key">ADfrM1gY26MSBGsibWxCYgzGHUs3H5DV0q6zqSvV</string>
+</resources>
