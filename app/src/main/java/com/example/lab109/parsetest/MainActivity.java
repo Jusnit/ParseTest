@@ -9,6 +9,7 @@ import android.view.MenuItem;
 
 import com.parse.ParseAnalytics;
 import com.parse.ParseObject;
+import com.parse.PushService;
 
 
 public class MainActivity extends Activity {
@@ -24,6 +25,7 @@ public class MainActivity extends Activity {
         testObject.setObjectId("yYq1c85QtH");
         testObject.put("age", "25");
         testObject.saveInBackground();
+        //PushService.subscribe(this, "Giants", MainActivity.class);
         ParseAnalytics.trackAppOpenedInBackground(getIntent());
 
 }
