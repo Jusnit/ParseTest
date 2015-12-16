@@ -45,7 +45,7 @@ public class MainActivity extends Activity {
         push.setMessage("Eating Push test");
        // push.sendInBackground();
         ParseAnalytics.trackAppOpenedInBackground(getIntent());
-        ParseQuery<ParseObject> query = new ParseQuery<ParseObject>("GreenMarkers");
+        ParseQuery<ParseObject> query = ParseQuery.getQuery("Event");
         query.findInBackground(new FindCallback<ParseObject>() {
             public void done(List<ParseObject> markers, ParseException e) {
                 if (e == null) {
