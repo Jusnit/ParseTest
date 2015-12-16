@@ -7,10 +7,15 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.parse.FindCallback;
 import com.parse.ParseAnalytics;
+import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParsePush;
+import com.parse.ParseQuery;
 import com.parse.PushService;
+
+import java.util.List;
 
 
 public class MainActivity extends Activity {
@@ -19,19 +24,42 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        ParseObject testObject = new ParseObject("Member");
+//        ParseObject testObject = new ParseObject("Member");
+//        //testObject.put("name", "Jusnit");
+//        String s  = testObject.getObjectId();
+//       // Log.i("ParseTest", s);
+//        testObject.setObjectId("yYq1c85QtH");
+//        testObject.put("age", "25");
+//        testObject.saveInBackground();
+        ParseObject testObject = new ParseObject("Event");
         //testObject.put("name", "Jusnit");
         String s  = testObject.getObjectId();
-       // Log.i("ParseTest", s);
-        testObject.setObjectId("yYq1c85QtH");
-        testObject.put("age", "25");
+       // Log.i("Event Object Id:", s);
+
+        //testObject.setObjectId("yYq1c85QtH");
+        testObject.put("Limit", "10");
         testObject.saveInBackground();
         ParsePush.subscribeInBackground("Eating");
         ParsePush push = new ParsePush();
         push.setChannel("Eating");
         push.setMessage("Eating Push test");
-        push.sendInBackground();
+       // push.sendInBackground();
         ParseAnalytics.trackAppOpenedInBackground(getIntent());
+        ParseQuery<ParseObject> query = new ParseQuery<ParseObject>("GreenMarkers");
+        query.findInBackground(new FindCallback<ParseObject>() {
+            public void done(List<ParseObject> markers, ParseException e) {
+                if (e == null) {
+                    // your logic here
+                    for(ParseObject p : markers){
+                        Log.i("query from cloud","limit = "+p.getString("Limit"));
+                    }
+                } else {
+                    // handle Parse Exception here
+                    Log.i("query from cloud","cant read from cloud");
+
+                }
+            }
+        });
 
 }
 
